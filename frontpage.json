@@ -1,0 +1,10 @@
+{
+    "sources": [
+        "DC_WP",
+        "NY_NYT",
+        "KY_LHL",
+        "WSJ"
+    ],
+    "print": "$RANDOM",
+    "printer": "home_printer"
+}
