@@ -53,7 +53,7 @@ def main():
     for file in existing:
         if print_key and print_key != "$RANDOM" and file.startswith(print_key) and not args.no_print:
             print_file(file, printer_name)
-        if token:
+        if args.token:
             with open(file, "rb") as pdf_file:
                 dbx.files_upload(pdf_file.read(), f'/{file}', dropbox.files.WriteMode.overwrite)
 
