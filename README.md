@@ -31,7 +31,7 @@ This setup is designed for the Raspberry Pi. Everything should work in a similar
         "printer": "home_printer"
     }
     ```
-    The `sources` list contains the list of newspaper keys. To find these, search for papers at https://www.newseum.org/todaysfrontpages/, and click the "PDF" link on the detail page. Check the URL for the key.
+    The `sources` list contains the list of newspaper keys. To find these, search for papers at https://www.newseum.org/todaysfrontpages/, and click the "PDF" link on the detail page. Check the URL for the key. Add one of the keys to the `print` property to pick which one to print out, or use `$RANDOM` to randomly select a paper to print.
 7. Initialize the Python virtual environment
     ```bash
     $ python3 -m venv .venv
@@ -57,6 +57,8 @@ We can use `cron` to schedule the script on weekday mornings.
 1. Run `$ crontab -e` to edit the table of jobs. Pick `nano` as the editor if prompted.
 2. Add this line to the editor:
 ```cron
-0 6 * * 1-5 cd /home/pi/frontage && .venv/bin/python -m frontpage frontpage.json --token token.json
+0 6 * * 1-5 . /home/pi/.profile && cd /home/pi/frontage && .venv/bin/python -m frontpage frontpage.json --token token.json
 ```
-This will schedule the job to run Mon-Fri at 6 AM. Check on the Wikipedia page on `cron` for more info about the table entries.
+This will schedule the job to run Mon-Fri at 6 AM. Check on the Wikipedia page on `cron` for more info about the table entries. We need to add `. /home/pi/.profile` as the first command to make sure we have access to the environment variables we need.
+
+> Make sure your system time is correct! You can check/edit it with `timedatectl`. You may need to restart after changing the time in order to reset system logging and `cron`.
