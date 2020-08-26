@@ -55,9 +55,9 @@ This setup is designed for the Raspberry Pi. Everything should work in a similar
 ## Schedule Weekday Delivery
 We can use `cron` to schedule the script on weekday mornings.
 1. Run `$ crontab -e` to edit the table of jobs. Pick `nano` as the editor if prompted.
-2. Add this line to the editor:
+2. Add this line to the editor (assuming you cloned this repo into your home directory):
 ```cron
-0 6 * * 1-5 . /home/pi/.profile && cd /home/pi/frontage && .venv/bin/python -m frontpage frontpage.json --token token.json
+0 6 * * 1-5 . /home/pi/.profile && cd /home/pi/frontpage && .venv/bin/python -m frontpage frontpage.json --token token.json
 ```
 This will schedule the job to run Mon-Fri at 6 AM. Check on the Wikipedia page on `cron` for more info about the table entries. We need to add `. /home/pi/.profile` as the first command to make sure we have access to the environment variables we need.
 
